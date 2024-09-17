@@ -4,9 +4,10 @@ const operators = document.querySelectorAll('#operator');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
 
-let displayValue = 0;
+let displayValue;
 let arrNum = [];
 let operator = '';
+let isNewNumber = false;
 
 function operate(sign, arr) {
   if (arr.length === 2 && sign === '+') {
@@ -29,43 +30,54 @@ numbers.forEach((num) => {
 
 operators.forEach((opr) => {
   opr.addEventListener('click', () => {
-    operator = opr.innerText;
+    arrNum.push(+display.innerText);
+    if (arrNum.length === 1) {
+      operator = opr.innerText;
+      isNewNumber = true;
+    }
+
     if (arrNum.length === 2) {
-      displayValue = operate(operator, arrNum);
-      display.innerText = displayValue;
+      display.innerText = operate(operator, arrNum);
       arrNum = [];
-      arrNum.push(displayValue);
+      arrNum.push(+display.innerText);
+      operator = opr.innerText;
+      isNewNumber = true;
     }
   });
 });
 
 equal.addEventListener('click', () => {
-  if (arrNum.length > 0) {
-    displayValue = operate(operator, arrNum);
-    display.innerText = displayValue;
+  arrNum.push(+display.innerText);
+  if (arrNum.length === 2) {
+    display.innerText = operate(operator, arrNum);
     arrNum = [];
-    arrNum.push(displayValue);
+    arrNum.push(+display.innerText);
+    isNewNumber = true;
+    operator = '';
   }
 });
 
 function showDisplay() {
-  let val = parseInt(this.innerText);
-  display.innerText = val;
+  let val = this.innerText;
 
-  if (arrNum.length === 0) {
-    arrNum.push(val);
-    console.log(arrNum, val);
-  } else if (arrNum.length === 1 && operator === '') {
-    arrNum.shift();
-    arrNum.push(val);
-    console.log(arrNum, val, '=== 1');
-  } else if (arrNum.length > 2) {
-    arrNum = [];
+  if (isNewNumber || display.innerText === '0') {
+    display.innerText = val;
+    isNewNumber = false;
   } else {
-    console.log(arrNum, val, 'else');
-    arrNum.push(val);
-    console.log(arrNum, val, 'else');
+    display.innerText += val;
   }
+
+  //   if (arrNum.length === 0 || (arrNum.length === 1 && operator.length === 1)) {
+  //     arrNum.push(val);
+  //     console.log(arrNum, val, 'first');
+  //   } else if (
+  //     (arrNum.length === 1 && operator === '') ||
+  //     (arrNum.length === 2 && operator === '')
+  //   ) {
+  //     arrNum.shift();
+  //     arrNum.push(val);
+  //     console.log(arrNum, val, '2nd');
+  //   }
 }
 
 clear.addEventListener('click', () => {
