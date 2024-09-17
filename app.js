@@ -10,18 +10,23 @@ let operator = '';
 let isNewNumber = false;
 
 function operate(sign, arr) {
-  if (arr.length === 2 && sign === '+') {
-    return arr.reduce((acc, curr) => acc + curr);
+  let result;
+
+  if (sign === '+') {
+    result = arr.reduce((acc, curr) => acc + curr);
+  } else if (sign === '-') {
+    result = arr.reduce((acc, curr) => acc - curr);
+  } else if (sign === '*') {
+    result = arr.reduce((acc, curr) => acc * curr);
+  } else if (sign === '/') {
+    result = arr.reduce((acc, curr) => acc / curr);
   }
-  if (arr.length === 2 && sign === '-') {
-    return arr.reduce((acc, curr) => acc - curr);
+
+  if (!Number.isInteger(result)) {
+    result = Math.round(result * 100) / 100;
   }
-  if (arr.length === 2 && sign === '*') {
-    return arr.reduce((acc, curr) => acc * curr);
-  }
-  if (arr.length === 2 && sign === '/') {
-    return arr.reduce((acc, curr) => acc / curr);
-  }
+
+  return result;
 }
 
 numbers.forEach((num) => {
@@ -59,8 +64,14 @@ equal.addEventListener('click', () => {
 function showDisplay() {
   let val = this.innerText;
 
-  if (val === '.' && display.innerText.includes('.')) {
-    return;
+  if (val === '.') {
+    if (display.innerText === '' || display.innerText === '0' || isNewNumber) {
+      display.innerText = '0.';
+      isNewNumber = false;
+      return;
+    } else if (display.innerText.includes('.')) {
+      return;
+    }
   }
 
   if (isNewNumber || display.innerText === '0') {
