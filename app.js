@@ -40,18 +40,31 @@ operators.forEach((opr) => {
 });
 
 equal.addEventListener('click', () => {
-  displayValue = operate(operator, arrNum);
-  display.innerText = displayValue;
-  arrNum = [];
-  arrNum.push(displayValue);
+  if (arrNum.length > 0) {
+    displayValue = operate(operator, arrNum);
+    display.innerText = displayValue;
+    arrNum = [];
+    arrNum.push(displayValue);
+  }
 });
 
 function showDisplay() {
-  display.innerText = this.innerText;
-  if (arrNum.length > 2) {
-    arrNum.unshift;
+  let val = parseInt(this.innerText);
+  display.innerText = val;
+
+  if (arrNum.length === 0) {
+    arrNum.push(val);
+    console.log(arrNum, val);
+  } else if (arrNum.length === 1 && operator === '') {
+    arrNum.shift();
+    arrNum.push(val);
+    console.log(arrNum, val, '=== 1');
+  } else if (arrNum.length > 2) {
+    arrNum = [];
   } else {
-    arrNum.push(parseInt(this.innerText));
+    console.log(arrNum, val, 'else');
+    arrNum.push(val);
+    console.log(arrNum, val, 'else');
   }
 }
 
@@ -59,4 +72,5 @@ clear.addEventListener('click', () => {
   display.innerText = 0;
   displayValue = 0;
   operator = '';
+  arrNum = [];
 });
