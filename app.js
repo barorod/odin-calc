@@ -59,6 +59,10 @@ equal.addEventListener('click', () => {
 function showDisplay() {
   let val = this.innerText;
 
+  if (val === '.' && display.innerText.includes('.')) {
+    return;
+  }
+
   if (isNewNumber || display.innerText === '0') {
     display.innerText = val;
     isNewNumber = false;
