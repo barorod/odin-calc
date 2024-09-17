@@ -30,28 +30,29 @@ numbers.forEach((num) => {
 
 operators.forEach((opr) => {
   opr.addEventListener('click', () => {
-    arrNum.push(+display.innerText);
-    if (arrNum.length === 1) {
-      operator = opr.innerText;
+    if (arrNum.length === 0 && operator === '') {
+      arrNum.push(+display.innerText);
       isNewNumber = true;
+      console.log(arrNum, operator, display.innerText);
+    } else if (arrNum.length === 1 && operator) {
+      arrNum.push(+display.innerText);
+      display.innerText = operate(operator, arrNum);
+      arrNum = [+display.innerText];
+      isNewNumber = true;
+      console.log(arrNum, operator, display.innerText);
     }
 
-    if (arrNum.length === 2) {
-      display.innerText = operate(operator, arrNum);
-      arrNum = [];
-      arrNum.push(+display.innerText);
-      operator = opr.innerText;
-      isNewNumber = true;
-    }
+    operator = opr.innerText;
   });
 });
 
 equal.addEventListener('click', () => {
-  arrNum.push(+display.innerText);
-  if (arrNum.length === 2) {
-    display.innerText = operate(operator, arrNum);
-    arrNum = [];
+  if (operator === '') return;
+
+  if (arrNum.length === 1) {
     arrNum.push(+display.innerText);
+    display.innerText = operate(operator, arrNum);
+    arrNum = [+display.innerText];
     isNewNumber = true;
     operator = '';
   }
@@ -66,23 +67,10 @@ function showDisplay() {
   } else {
     display.innerText += val;
   }
-
-  //   if (arrNum.length === 0 || (arrNum.length === 1 && operator.length === 1)) {
-  //     arrNum.push(val);
-  //     console.log(arrNum, val, 'first');
-  //   } else if (
-  //     (arrNum.length === 1 && operator === '') ||
-  //     (arrNum.length === 2 && operator === '')
-  //   ) {
-  //     arrNum.shift();
-  //     arrNum.push(val);
-  //     console.log(arrNum, val, '2nd');
-  //   }
 }
 
 clear.addEventListener('click', () => {
-  display.innerText = 0;
-  displayValue = 0;
+  display.innerText = '0';
   operator = '';
   arrNum = [];
 });
