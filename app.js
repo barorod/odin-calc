@@ -33,13 +33,11 @@ operators.forEach((opr) => {
     if (arrNum.length === 0 && operator === '') {
       arrNum.push(+display.innerText);
       isNewNumber = true;
-      console.log(arrNum, operator, display.innerText);
     } else if (arrNum.length === 1 && operator) {
       arrNum.push(+display.innerText);
       display.innerText = operate(operator, arrNum);
       arrNum = [+display.innerText];
       isNewNumber = true;
-      console.log(arrNum, operator, display.innerText);
     }
 
     operator = opr.innerText;
