@@ -94,6 +94,7 @@ backSpace.addEventListener('click', () => {
   if (res === '0' && arrNum.length === 1) {
     arrNum = [];
     display.innerText = 0;
+    return;
   }
   if (res.length === 1) {
     display.innerText = res.slice(0, res.length - 1);
