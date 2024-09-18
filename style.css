@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+  background-color: honeydew;
+}
+
+body {
+  width: 500px;
+  height: 100vh;
+  margin: 0px auto;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  padding: 16px 0;
+}
+
+.calcBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.btn {
+  min-height: 120px;
+  min-width: 120px;
+  text-align: 1;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  cursor: pointer;
+  background-color: wheat;
+  margin-bottom: 2px;
+}
+
+.btn#number {
+  background-color: aqua;
+}
+
+.first,
+.second,
+.third,
+.fourth,
+.firstSecondCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs {
+  display: flex;
+}
+
+.zero {
+  flex: 1;
+}
+
+.display {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 16px 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  font-size: 24px;
+  text-align: right;
+}
+
+.firstSecondCol,
+.first,
+.third {
+  margin-right: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
