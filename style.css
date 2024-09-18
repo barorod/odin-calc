@@ -69,11 +69,7 @@ body {
 }
 
 .display {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  padding: 16px 8px;
-  margin-top: 8px;
-  border-radius: 5px;
+  flex: 1;
   font-size: 24px;
   text-align: right;
 }
@@ -86,4 +82,27 @@ body {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+.val {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 18px 8px;
+  height: 18px;
+  margin-top: 8px;
+  border-radius: 5px;
+}
+
+.back {
+  flex: 0;
+  cursor: pointer;
+  padding: 4px 8px;
+  background-color: rgb(53, 53, 53);
+  color: whitesmoke;
+  margin-left: 4px;
+  border-radius: 2px;
+  border: none;
 }

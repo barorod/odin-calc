@@ -3,6 +3,7 @@ const display = document.querySelector('.display');
 const operators = document.querySelectorAll('#operator');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
+const backSpace = document.querySelector('.back');
 
 let displayValue;
 let arrNum = [];
@@ -86,4 +87,18 @@ clear.addEventListener('click', () => {
   display.innerText = '0';
   operator = '';
   arrNum = [];
+});
+
+backSpace.addEventListener('click', () => {
+  let res = display.innerText;
+  if (res === '0' && arrNum.length === 1) {
+    arrNum = [];
+    display.innerText = 0;
+  }
+  if (res.length === 1) {
+    display.innerText = res.slice(0, res.length - 1);
+    display.innerText = 0;
+  } else if (res.length > 1) {
+    display.innerText = res.slice(0, res.length - 1);
+  }
 });
